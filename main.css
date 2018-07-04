@@ -1,0 +1,87 @@
+/* Deslizador
+	 ========================================================================== */
+
+div {
+	/* DIV ocupará el 80% del ancho de la pantalla siempre y cuando no supere un ancho de 800 pixeles (el ancho de todas las imágenes es también 800px) */
+	width: 80%;
+	max-width: 800px;
+	height: 600px;
+	/* Ocultar el excedente (todo lo que está fuera del ancho y alto del DIV) nos permitirá ver solamente una imagen a la vez */
+	overflow: hidden;
+}
+
+/* Tira de imágenes
+	 ========================================================================== */
+
+
+figure {
+	/* Posicionar FIGURE de manera relativa a su padre (DIV) permitirá que se mueva con facilidad durante la animación */
+	position: relative;
+	/* El ancho de FIGURE será el 100% × la cantidad de imágenes */
+	width: 500%;
+	/* De manera predeterminada los navegadores agregan un margen alrededor del elemento FIGURE, aquí se lo quitamos */
+	margin: 0;
+	/* De manera predeterminada los navegadores agregan un espacio alrededor y entre las imágenes (IMG), aquí se lo quitamos al especificar que el tamaño de la fuente será 0, es decir, no habrá espacio */
+	font-size: 0;
+	/* Más abajo vamos a crear nuestra animación, y aquí se la asignamos a nuestra tira de imágenes, le indicamos que tendrá una duración de 30 segundos, que la animación que usaremos será la animación 'deslizador' que creamos abajo, y que queremos que se repita de manera infinita */
+	animation: 30s deslizador infinite;
+}
+
+/* Imágenes
+	 ========================================================================== */
+
+img {
+	/* Tenemos que asignarle un ancho uniforme a cada imagen dentro de la tira de imágenes (FIGURE), es decir 100% ÷ 5 */
+	width: 20%;
+}
+
+/* Animación
+	 ========================================================================== */
+
+/*
+ * Tenemos que mover nuestra tira de imágenes (FIGURE) de derecha a izquierda
+ *
+ * Nuestra tira de imágenes (FIGURE) mide 4 veces el ancho del elemento
+ * principal (DIV), por lo que cada movimiento de la tira de imágenes
+ * se medirá en incrementos de 100%
+*/
+@keyframes deslizador {
+/* Cada imagen en el deslizador permanecerá enmarcada durante el 20% de la duración total de la animación, y se moverá de una imagen a otra en tan solo 5% */
+	0% { left: 0% }
+ /* de 0% a 20% no se mueve */
+	20% { left: 0% }
+/* de 20% a 25% se mueve la distancia de una imagen */
+	25% { left: -100% }
+	/* de 25% a 45% no se mueve */
+	45% { left: -100% }
+/* de 45% a 50% se mueve la distancia de una imagen */
+	50% { left: -200% }
+/* de 50% a 70% no se mueve */
+	70% { left: -200% }
+/* de 70% a 75% se mueve la distancia de una imagen */
+	75% { left: -300% }
+/* de 75% a 95% no se mueve */
+	95% { left: -300% }
+/* de 95% a 100% se mueve la distancia de una imagen */
+	100% { left: -400% }
+}
+
+/* Extras
+	 ========================================================================== */
+
+/*Esta sección no tiene nada que ver con nuestro deslizador, pero hará que sea vea más bonito */
+
+body {
+	/* Usamos una técnica para centrar el hijo de BODY, es decir, el elemento principal (DIV) */
+	display: flex;
+	/* Centrado horizontal */
+	justify-content: center;
+	/* Centrado vertical */
+	align-items: center;
+	/* Queremos asegurarnos que el ancho del cuerpo de la página web (BODY), sea el 100% del ancho de la pantalla */
+	width: 100%;
+	/* Queremos asegurarnos que el alto del cuerpo de la página web (BODY), sea el 100% del alto de la pantalla */
+	height: 100vh;
+	/* De manera predeterminada el color de fondo de la página es blanco, aquí lo cambiamos a negro */
+	background-color: black;
+}
